@@ -1,6 +1,6 @@
 <?php
   $notify='hey boy';
-  $link=mysqli_connect("shareddb-i.hosting.stackcp.net","chatapp-33378387","pampwatv78","chatapp-33378387");
+  $link=mysqli_connect("sl-aus-syd-1-portal.0.dblayer.com",21282,"admin","QYEWTRXMMHROAOIQ","compose");
     if(mysqli_connect_error()){
      die("error connecting to database"); 
     }
