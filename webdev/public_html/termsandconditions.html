@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validation</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        iframe {
+            display: block;
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            border: 0;
+            margin-top: 55px;
+        }
+
+        s #container {
+            width: 600px;
+            height: auto;
+            margin: 0 auto;
+            background-color: aliceblue;
+            position: relative;
+            top: 60px;
+
+        }
+
+        body {
+            background-color: gainsboro;
+        }
+
+        #content {
+            width: 400px;
+            height: auto;
+            margin: 0 auto;
+            position: relative;
+            top: 130px;
+
+        }
+
+        #content input {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 29px;
+            padding-right: 0px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            position: relative;
+            top: -5px;
+
+        }
+
+        #formelement {
+            margin-bottom: 15px;
+            margin-left: 35px;
+
+        }
+
+        #content label {
+            float: left;
+            width: 130px;
+
+        }
+
+        #submit {
+            padding: 5px !important;
+        }
+
+        #success {
+
+            margin-left: 150px;
+            color: green;
+            display: none;
+        }
+
+        span {
+            color: red;
+            font-style: italic;
+            font-size: 15px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <iframe src="http://vijethvk11-com.stackstaging.com/applanding.html">
+ </iframe>
+
+    <script type="text/javascript">
+        function verifyemail(email) {
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            return email.match(emailReg);
+        }
+
+        function phoneverify(number) {
+            var NumberRegex = /^[0-9]*$/;
+            var pattern = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/;
+
+            if (pattern.test(number))
+                return true;
+            else
+                return false;
+        }
+
+        $("#submit").click(function() {
+
+            var vaild = true;
+
+            if ($("#email").val() && $("#phone").val() && $("#password").val() && $("#confirmpassword").val()) {
+
+                if (verifyemail($("#email").val()) == null) {
+                    vaild = false;
+
+                    $("#email").next("span").html("invalid email").css("display", "block");
+                    $("#email").css({
+                        borderColor: "red"
+                    });
+                }
+
+                if (!phoneverify($("#phone").val())) {
+                    vaild = false;
+                    $("#phone").next("span").html("invalid number").css("display", "block");
+                    $("#phone").css({
+                        borderColor: "red"
+                    });
+                }
+
+
+                if ($("#password").val() != $("#confirmpassword").val()) {
+                    vaild = false;
+
+                    alert($("#passsword").val());
+                    alert($("#confirmpasssword").val());
+
+                    $("#password").next("span").html("password mismatch").css({
+                        display: "block"
+                    });
+
+                    $("#password").css({
+                        borderColor: "red"
+                    });
+
+                    $("#confirmpassword").css({
+                        borderColor: "red"
+                    });
+
+                }
+
+                if (vaild)
+                    $("#success").show();
+
+            } else {
+                $("#confirmpassword").next("span").css("display", "block");
+                $("#confirmpassword").css({
+                    border: "1px solid red"
+                })
+            }
+        })
+
+        $("input").focus(function() {
+            $(this).next("span").css({
+                display: "none",
+            });
+            $(this).css({
+                border: "1px solid gray"
+            })
+
+        })
+
+        $("#phone").focus(function() {
+            if (!$("#email").val()) {
+                $("#email").next("span").html("email cannot be empty").css({
+                    display: "block",
+                })
+                $("#email").css({
+                    border: "1px solid red"
+                })
+                $("#phone").blur();
+
+            }
+
+        });
+
+        $("#password").focus(function() {
+            // $("#phone").off("blur");
+            if (!$("#phone").val()) {
+                $("#phone").next("span").html("number cannot be empty").css({
+                    display: "block"
+                })
+                $("#phone").css({
+                    border: "1px solid red"
+                })
+                $("#password").blur();
+            }
+        });
+
+        $("#confirmpassword").focus(function() {
+            // $("#phone").off("blur");
+            if (!$("#password").val()) {
+                $("#password").next("span").html("password cannot be empty").css({
+                    display: "block"
+                })
+                $("#password").css({
+                    border: "1px solid red"
+                })
+                $("#confirmpassword").blur();
+            }
+        });
+    </script>
+</body>
+
+</html>

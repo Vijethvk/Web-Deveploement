@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaction Tester</title>
+
+    <style>
+        #shape {
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            position: relative;
+            top: 100px;
+            left: 105px;
+            display: none;
+        }
+
+        body {
+            font-weight: bold;
+        }
+
+        #normal {
+            font-weight: normal;
+        }
+
+        #fastest button {
+            background-color: #F44336;
+            padding: 12px;
+            border: none;
+            color: white;
+            font-size: 18px;
+        }
+
+        #fastest button:hover {
+            background-color: white;
+            color: black;
+            border: 2px solid #F44336;
+        }
+
+        #again button {
+            background-color: #4CAF50;
+            padding: 12px;
+            border: none;
+
+        }
+
+        #again button:hover {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>Test your Reactions!</h2>
+    <p id="normal">Click the box and circles as quickly as you can!</p>
+    <p>Your time :<span id="time"></span></p>
+    <p id="fastest"><button id="reaction">Click here to know the fastest reaction</button></p>
+    <p id="again"><button id="replay">Play again!</button></p>
+    <div id="shape"></div>
+    <script>
+        document.getElementById("replay").onclick = function() {
+            location.reload();
+        }
+
+        delay();
+        var start = new Date().getTime();
+        var fastest_reaction = [];
+        console.log(fastest_reaction);
+        document.getElementById("shape").onclick = function() {
+            document.getElementById("shape").style.display = "none";
+            var end = new Date().getTime();
+            var reaction_time = (end - start) / 1000;
+            fastest_reaction.push(reaction_time);
+            console.log(fastest_reaction);
+            document.getElementById("time").innerHTML = " " + reaction_time + "s";
+            delay();
+
+        }
+
+        document.getElementById("reaction").onclick = function() {
+            if (fastest_reaction.length > 0) {
+                document.getElementById("fastest").innerHTML = "<span>" + "Your fastest reaction time : " + leastreaction() + "s</span>"
+            } else {
+                document.getElementById("fastest").innerHTML = "<span>" + "You haven't reacted yet Play again! " + "</span>"
+            }
+        }
+
+        function leastreaction() {
+            var temp = fastest_reaction[0];
+            for (var i = 1; i < fastest_reaction.length; i++)
+                if (fastest_reaction[i] < temp)
+                    temp = fastest_reaction[i];
+            return temp;
+        }
+
+        function delay() {
+            setTimeout(shapemaker, Math.random() * 2000);
+        }
+
+        function shapemaker() {
+
+            if (Math.random() > 0.5) {
+                document.getElementById("shape").style.borderRadius = "50%";
+            } else
+                document.getElementById("shape").style.borderRadius = "0"
+
+            document.getElementById("shape").style.background = "blue";
+            var top = Math.random() * 200;
+            document.getElementById("shape").style.top = top + "px";
+            var left = Math.random() * 900;
+            document.getElementById("shape").style.left = left + "px";
+            var width = Math.random() * 200 + 100;
+            document.getElementById("shape").style.width = width + "px";
+            document.getElementById("shape").style.height = width + "px";
+            document.getElementById("shape").style.backgroundColor = getcolor();
+            document.getElementById("shape").style.display = "block";
+            start = new Date().getTime();
+
+
+        }
+
+        function getcolor() {
+            var letters = "0123456789ABCDEF".split('');
+            var color = "#";
+            for (var i = 0; i < 6; i++)
+                color += letters[Math.floor(Math.random() * 16)];
+            return color;
+
+        }
+    </script>
+</body>
+
+</html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">

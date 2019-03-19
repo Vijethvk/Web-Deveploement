@@ -1,0 +1,6 @@
+<?php
+echo "included file<br>";
+include("post.php");
+
+echo file_get_contents("https://www.ecowebhosting.co.uk");
+?>

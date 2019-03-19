@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code player</title>
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <style type="text/css">
+        #header {
+            width: 100%;
+            background-color: #EDEDED;
+            height: 35px;
+            padding: 2px;
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: sans-serif;
+
+        }
+
+        #logo {
+            float: left;
+            padding: 7px;
+            font-weight: bold;
+        }
+
+        #button {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .toggle {
+            float: left;
+            border: 1px solid #CCCCCC;
+            padding: 8px;
+            font-size: 90%;
+        }
+
+        #html {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        #output {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .active {
+            background-color: #ECF2FA;
+        }
+
+        .current-button {
+            background-color: gainsboro;
+        }
+
+        .panel {
+            float: left;
+            width: 50%;
+            border-left: none;
+        }
+
+        iframe {
+            border: none;
+        }
+
+        textarea {
+            border-top: none;
+            border-color: grey;
+            resize: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">
+            Code player
+        </div>
+        <div id="button">
+            <div class="toggle active" id="html">HTML</div>
+            <div class="toggle" id="css">CSS</div>
+            <div class="toggle" id="javascript">JavaScript</div>
+            <div class="toggle active" id="output">Output</div>
+        </div>
+    </div>
+
+    <div id="body-container">
+        <textarea id="html-panel" class="panel" spellcheck="false"><p id="paragraph">hello world!<p></textarea>
+
+        <textarea id="css-panel" class="panel hidden" spellcheck="false">p{color:green}
+        </textarea>
+
+        <textarea id="javascript-panel" class="panel hidden" spellcheck="false"> document.getElementById("paragraph").innerHTML="Hello Boss!";
+        </textarea>
+
+        <iframe id="output-panel" class="panel"></iframe>
+    </div>
+
+
+
+    <script>
+        function update() {
+            $("iframe").contents().find("html").html("<html><head><style type='text/css'>" + $("#css-panel").val() + "</style></head><body>" + $("#html-panel").val() + "</body><html>")
+            document.getElementById("output-panel").contentWindow.eval($("#javascript-panel").val());
+            //eval($("#javascript-panel").val());
+        };
+
+        $(".toggle").hover(function() {
+
+            $(this).addClass("current-button");
+        }, function() {
+            $(this).removeClass("current-button");
+        });
+
+        $(".toggle").click(function() {
+            $(this).toggleClass("active");
+            $(this).removeClass("current-button");
+            var panelid = $(this).attr("id") + "-panel";
+            $("#" + panelid).toggleClass("hidden");
+            var activepanel = 4 - $(".hidden").length;
+            if (activepanel < 2)
+                activepanel = 2;
+            console.log(activepanel);
+            $(".panel").width(($(window).width() / activepanel) - 5);
+
+        })
+
+        $(".panel").height($(window).height() - $("#header").height() - 10);
+        $(".panel").width(($(window).width() / 2) - 7);
+        $("iframe").contents().find("html").html($("#html-panel").val())
+
+        update();
+        $("textarea").on('change keyup paste', function() {
+            update();
+        });
+
+    </script>
+</body>
+
+</html>

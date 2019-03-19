@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App landing</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <style>
+        .jumbotron {
+            background-image: url(background1.JPG);
+            color: white;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #appsummary {
+            text-align: center;
+        }
+
+        .card-img-top {
+            height: 250px;
+        }
+
+        #footer {
+            background-color: aqua;
+            padding-top: 80px;
+            margin-top: 50px;
+            text-align: center;
+            padding-bottom: 80px;
+        }
+
+        
+
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#navbar" data-offset="80">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+        <a class="navbar-brand" href="#">MyApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#jumbotron">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#footer">Download</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 needs-validation" novalidate>
+                <div>
+                    <input class="form-control mr-sm-2" type="email" placeholder="Email" aria-label="email" id="#email" required>
+                    <div class="invalid-tooltip">
+                        please provide vaild email
+                    </div>
+                </div>
+                <div>
+                    <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="password" required>
+                    <div class="invalid-tooltip">
+                        please provide password
+                    </div>
+                </div>
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="jumbotron" id="jumbotron">
+        <h1 class="display-4">My Awesome App!</h1>
+        <p class="lead">This is why YOU should download this fantastic app1</p>
+        <hr class="my-4">
+        <p>Want to know more? Join us!!</p>
+
+        <form class="form-inline justify-content-center needs-validation" novalidate>
+            <div class="form-group">
+                <label class="sr-only" for="inlineFormInputGroupUsername2">Email</label>
+                <div class="input-group mb-2 mr-sm-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                    </div>
+                    <input type="email" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Email" required>
+                    <div class="invalid-tooltip">
+                        please provide vaild email
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-2">Signup</button>
+        </form>
+    </div>
+
+    <div class="container">
+
+        <div id="appsummary">
+            <h1>Why This App Is Awesome</h1>
+
+            <p class="lead">Summary,once again of your app's awesomenes</p>
+        </div>
+
+    </div>
+    <div class="container" id="about">
+      <div class="row text-center" style="display:flex; flex-wrap:wrap" >
+        <div class="col-lg-3">
+            <div class="card">
+                <img class="card-img-top" src="card1.JPG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-anchor"></i> Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="card1.JPG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-anchor"></i> Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="card1.JPG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-anchor"></i> Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="card2.JPG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-images"></i> Card title</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="card3.JPG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-paw"></i> Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+      </div>
+     </div> 
+
+    <div id="footer">
+
+        <h2>Download the app!</h2>
+        <p class="lead">Really,why should I download this app?</p>
+        <p><img src="playstore.png" style="width:200px"></p>
+    </div>
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+    </script>
+</body>
+
+</html>
