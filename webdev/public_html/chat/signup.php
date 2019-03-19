@@ -1,5 +1,35 @@
 <?php
 include('database_connection.php');
+$email='';
+
+try 
+{
+	$mongo = new MongoClient('mongodb://shivu:shivu1998atmongolab@ds145752.mlab.com:45752/friendskart');
+    $db = $mongo->selectDB("friendskart");
+     $cursor = $db->listCollections();
+  /*  foreach( $cursor as $doc ) {
+      echo "<li>" .  $doc->getName() . "</li>";
+      $collection_name = $doc->getName();
+    }*/
+    $collection = $db->users;
+    $query1=array('username'=> $_POST['user_id']);
+    $cursor2 = $collection->find();
+    foreach($cursor2 as $result)
+    {
+        $email=$result['email'];
+    	//print_r($result['email']);
+    }
+    
+}
+ catch ( MongoConnectionException $e ) {
+    die('Error connecting to MongoDB server');
+  } catch ( MongoException $e ) {
+    die('Mongo Error: ' . $e->getMessage());
+  } catch ( Exception $e ) {
+    die('Error: ' . $e->getMessage());
+  }
+
+
 $message='';
 session_start();
 if(isset($_SESSION['user_id']))
@@ -37,7 +67,7 @@ if(isset($_POST["login"]))
    $sub_query = "
         INSERT INTO login 
         (user_id,username,password,email,custid) 
-        VALUES ('".$_POST['user_id']."','".$_POST['username']."','".$_POST['password']."','".$_POST['email']."','".$row1['custid']."')";
+        VALUES ('".$_POST['user_id']."','".$_POST['username']."','".$_POST['password']."','".$email."','".$row1['custid']."')";
   
    
     if(mysqli_query($link,$sub_query))
@@ -102,11 +132,11 @@ if(isset($_POST["login"]))
          <input type="text" id="username" name="username" 
                 class="form-control" required value="">
        </div>
-       <div class="form-group">
+<!--       <div class="form-group">
          <label>Enter Email</label>
          <input type="email" id="email" name="email" 
                 class="form-control" required value="">
-       </div>
+       </div> -->
        <div class="form-group">
          <label>Enter Password</label>
          <input type="password" id="password" name="password" 
